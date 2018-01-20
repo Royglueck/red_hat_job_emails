@@ -1,0 +1,2 @@
+scrapy==1.4.0
+python-dateutil==2.5.3
