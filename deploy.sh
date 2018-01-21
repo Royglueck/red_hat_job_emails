@@ -6,9 +6,9 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPT_NAME="scraper"
 VIRTUAL_ENV_DIR="$SCRIPT_DIR/rh"
 
-if [ -z "$VIRTUAL_ENV_DIR" ]; then
-    VIRTUAL_ENV_DIR="$SCRIPT_DIR/rh"
-fi
+virtualenv -p python3.5 $VIRTUAL_ENV_DIR
+source $VIRTUAL_ENV_DIR/bin/activate
+pip3 install -r requirements.txt
 
 echo "Using virtualenv located in $VIRTUAL_ENV_DIR ..."
 
@@ -27,4 +27,4 @@ cd $SCRIPT_DIR
 zip -qr9 $SCRIPT_DIR/$SCRIPT_NAME.zip $SCRIPT_NAME.py
 
 # Deploy the code to AWS!
-terraform apply
+#terraform apply
