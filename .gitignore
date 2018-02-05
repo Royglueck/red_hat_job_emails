@@ -1,3 +1,8 @@
+__pycache__
 *.json
 terraform.*
+.terraform
 variables.tf
+email.config
+scraper.zip*
+rh

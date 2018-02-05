@@ -5,8 +5,9 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPT_NAME="scraper"
 VIRTUAL_ENV_DIR="$SCRIPT_DIR/rh"
+PYTHON=python3.6
 
-virtualenv -p python3.5 $VIRTUAL_ENV_DIR
+virtualenv -p $PYTHON $VIRTUAL_ENV_DIR
 source $VIRTUAL_ENV_DIR/bin/activate
 pip3 install -r requirements.txt
 
@@ -19,12 +20,12 @@ if [ -f $SCRIPT_DIR/$SCRIPT_NAME.zip ]; then
 fi
 
 # Add virtualenv libs to the new zip file
-cd $VIRTUAL_ENV_DIR/lib/python3.5/site-packages
+cd $VIRTUAL_ENV_DIR/lib/$PYTHON/site-packages
 zip -qr9 $SCRIPT_DIR/$SCRIPT_NAME.zip *
 cd $SCRIPT_DIR
 
 # Add python code to the zip file
-zip -qr9 $SCRIPT_DIR/$SCRIPT_NAME.zip $SCRIPT_NAME.py
+zip -qr9 $SCRIPT_DIR/$SCRIPT_NAME.zip $SCRIPT_NAME.py email.config
 
 # Deploy the code to AWS!
-#terraform apply
+terraform apply

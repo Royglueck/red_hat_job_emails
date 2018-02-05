@@ -17,12 +17,6 @@ resource "aws_cloudwatch_event_target" "red_hat_jobs_target" {
 	target_id 	= "red_hat_jobs_target"
 	rule 		= "${aws_cloudwatch_event_rule.red_hat_jobs_rule.name}"
 	arn 		= "${aws_lambda_function.red_hat_jobs_lambda.arn}"
-	input		= <<EOF
-{
-	"email_address":"",
-	"email_password":""
-}
-EOF
 }
 
 # Define an IAM role to execute the function under
